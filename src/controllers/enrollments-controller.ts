@@ -1,7 +1,7 @@
-import { Response } from 'express';
-import httpStatus from 'http-status';
-import { AuthenticatedRequest } from '@/middlewares';
-import enrollmentsService from '@/services/enrollments-service';
+import { AuthenticatedRequest } from "@/middlewares";
+import enrollmentsService from "@/services/enrollments-service";
+import { Response } from "express";
+import httpStatus from "http-status";
 
 export async function getEnrollmentByUser(req: AuthenticatedRequest, res: Response) {
   const { userId } = req;
@@ -11,7 +11,7 @@ export async function getEnrollmentByUser(req: AuthenticatedRequest, res: Respon
 
     return res.status(httpStatus.OK).send(enrollmentWithAddress);
   } catch (error) {
-    return res.sendStatus(httpStatus.NO_CONTENT);
+    return res.sendStatus(httpStatus.NOT_FOUND);
   }
 }
 
@@ -28,14 +28,15 @@ export async function postCreateOrUpdateEnrollment(req: AuthenticatedRequest, re
   }
 }
 
-// TODO - Receber o CEP do usuário por query params.
 export async function getAddressFromCEP(req: AuthenticatedRequest, res: Response) {
+  const { cep } = req.query as Record<string, string>;
+
   try {
-    const address = await enrollmentsService.getAddressFromCEP();
-    res.status(httpStatus.OK).send(address);
+    const address = await enrollmentsService.getAddressFromCEP(cep);
+    return res.status(httpStatus.OK).send(address);
   } catch (error) {
-    if (error.name === 'NotFoundError') {
-      return res.send(httpStatus.NO_CONTENT);
+    if (error.name === "NotFoundError") {
+      return res.sendStatus(httpStatus.NOT_FOUND);
     }
   }
 }
