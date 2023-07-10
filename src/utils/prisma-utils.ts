@@ -4,4 +4,4 @@ export function exclude<T, Key extends keyof T>(entity: T, ...keys: Key[]): Omit
     delete newEntity[key];
   }
   return newEntity;
-}
+};
