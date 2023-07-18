@@ -21,7 +21,7 @@ export async function createTicket(enrollmentId: number, ticketTypeId: number, s
       status,
     },
   });
-};
+}
 
 export async function createTicketTypeRemote() {
   return prisma.ticketType.create({
@@ -32,7 +32,7 @@ export async function createTicketTypeRemote() {
       includesHotel: faker.datatype.boolean(),
     },
   });
-};
+}
 
 export async function createTicketTypeWithHotel() {
   return prisma.ticketType.create({
@@ -43,20 +43,4 @@ export async function createTicketTypeWithHotel() {
       includesHotel: true,
     },
   });
-};
-
-export function getTicketTypeReturn() {
-  const expected: TicketType[] = [
-    {
-      id: 1,
-      name: 'Presencial',
-      price: 3000,
-      isRemote: false,
-      includesHotel: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-  ];
-
-  return expected;
 };
