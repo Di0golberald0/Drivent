@@ -1,6 +1,4 @@
-import { notFoundError } from '@/errors';
-import { badRequestError } from '@/errors/bad-request-error';
-import { cannotBookingError } from '@/errors/cannot-booking-error';
+import { badRequestError, cannotBookingError, notFoundError } from '@/errors';
 import bookingRepository from '@/repositories/booking-repository';
 import enrollmentRepository from '@/repositories/enrollment-repository';
 import roomRepository from '@/repositories/room-repository';
