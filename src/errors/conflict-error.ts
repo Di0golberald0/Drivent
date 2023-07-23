@@ -5,4 +5,4 @@ export function conflictError(message: string): ApplicationError {
     name: 'ConflictError',
     message,
   };
-}
+};
