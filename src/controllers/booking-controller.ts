@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express';
 import httpStatus from 'http-status';
 import { AuthenticatedRequest } from '@/middlewares';
-//import bookingService from '@/services/booking-service';
+import bookingService from '@/services/booking-service';
 
 export async function listBooking(req: AuthenticatedRequest, res: Response, next: NextFunction) {
   try {

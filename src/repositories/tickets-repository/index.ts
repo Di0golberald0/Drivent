@@ -4,7 +4,7 @@ import { CreateTicketParams } from '@/protocols';
 
 async function findTicketTypes(): Promise<TicketType[]> {
   return prisma.ticketType.findMany();
-}
+};
 
 async function findTicketByEnrollmentId(enrollmentId: number) {
   return prisma.ticket.findFirst({
@@ -13,13 +13,13 @@ async function findTicketByEnrollmentId(enrollmentId: number) {
       TicketType: true
     },
   });
-}
+};
 
 async function createTicket(ticket: CreateTicketParams) {
   return prisma.ticket.create({
     data: ticket,
   });
-}
+};
 
 async function findTickeyById(ticketId: number) {
   return prisma.ticket.findFirst({
@@ -30,7 +30,7 @@ async function findTickeyById(ticketId: number) {
       Enrollment: true,
     },
   });
-}
+};
 
 async function findTickeWithTypeById(ticketId: number) {
   return prisma.ticket.findFirst({
@@ -41,7 +41,7 @@ async function findTickeWithTypeById(ticketId: number) {
       TicketType: true,
     },
   });
-}
+};
 
 async function ticketProcessPayment(ticketId: number) {
   return prisma.ticket.update({
@@ -52,7 +52,7 @@ async function ticketProcessPayment(ticketId: number) {
       status: TicketStatus.PAID,
     },
   });
-}
+};
 
 export default {
   findTicketTypes,
